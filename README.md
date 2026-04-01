@@ -105,3 +105,18 @@ INSERT INTO attendance (crew_id, attendance_date, start_time, end_time) VALUES (
 UPDATE attendance AS a INNER JOIN crew AS c ON a.crew_id = c.crew_id SET a.start_time = '10:00:00'
 WHERE c.nickname = '주니' AND a.attendance_date = '2025-03-12';
 ```
+
+## 문제 8: 허위 출석 기록 삭제 (DELETE)
+
+#### 시력은 좋지 않지만, 평소 눈썰미가 좋은 검프는 아론이 3월 12일에 캠퍼스에 도착하지 않은 점을 깨달았다. 그런데 무슨 이유에서인지 그날 출석 처리가 되어 있는 것을 우연히 발견했다.
+
+```
+검프: 아론...? 3월 12일에는 안 나오셨잖아요? 그날 구구한테 물어보니까 안 나오셨다던데...
+아론: 앗.. 죄송해요 ㅜㅜ
+검프: 해당 기록은 제가 지우겠습니다..
+```
+
+```
+DELETE a FROM attendance AS a INNER JOIN crew AS c ON a.crew_id = c.crew_id
+WHERE c.nickname = '아론' AND a.attendance_date = '2025-03-12';
+```
