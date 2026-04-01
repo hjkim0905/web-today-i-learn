@@ -147,3 +147,37 @@ SELECT c.nickname, a.end_time FROM attendance AS a INNER JOIN crew AS c ON a.cre
 WHERE a.attendance_date = '2025-03-05' ORDER BY a.end_time DESC
 LIMIT 1;
 ```
+
+---
+
+# 집계 함수 실습
+
+## 문제 13: 크루별로 '기록된' 날짜 수 조회
+
+```
+SELECT c.nickname, COUNT(*) AS record_count FROM attendance AS a INNER JOIN crew AS c ON a.crew_id = c.crew_id
+GROUP BY c.nickname;
+```
+
+## 문제 14: 크루별로 등교 기록이 있는(start_time IS NOT NULL) 날짜 수 조회
+
+```
+SELECT c.nickname, COUNT(a.start_time) AS attendance_count FROM attendance AS a INNER JOIN crew AS c ON a.crew_id = c.crew_id
+WHERE a.start_time IS NOT NULL
+GROUP BY c.nickname;
+```
+
+## 문제 15: 날짜별로 등교한 크루 수 조회
+
+```
+SELECT attendance_date, COUNT(*) AS crew_count FROM attendance
+GROUP BY attendance_date;
+```
+
+## 문제 16: 크루별 가장 빠른 등교 시각(MIN)과 가장 늦은 등교 시각(MAX)
+
+```
+SELECT c.nickname, MIN(a.start_time) AS earliest, MAX(a.start_time) AS latest FROM attendance AS a INNER JOIN crew AS c ON a.crew_id = c.crew_id
+GROUP BY c.nickname;
+
+```
