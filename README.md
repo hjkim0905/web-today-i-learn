@@ -106,7 +106,7 @@ UPDATE attendance AS a INNER JOIN crew AS c ON a.crew_id = c.crew_id SET a.start
 WHERE c.nickname = '주니' AND a.attendance_date = '2025-03-12';
 ```
 
-## 문제 8: 허위 출석 기록 삭제 (DELETE)
+## 문제 9: 허위 출석 기록 삭제 (DELETE)
 
 #### 시력은 좋지 않지만, 평소 눈썰미가 좋은 검프는 아론이 3월 12일에 캠퍼스에 도착하지 않은 점을 깨달았다. 그런데 무슨 이유에서인지 그날 출석 처리가 되어 있는 것을 우연히 발견했다.
 
@@ -119,4 +119,13 @@ WHERE c.nickname = '주니' AND a.attendance_date = '2025-03-12';
 ```
 DELETE a FROM attendance AS a INNER JOIN crew AS c ON a.crew_id = c.crew_id
 WHERE c.nickname = '아론' AND a.attendance_date = '2025-03-12';
+```
+
+## 문제 10: 출석 정보 조회하기 (JOIN)
+
+#### 검프는 SQL이 익숙지 않아 crew 테이블에서 먼저 닉네임을 검색하고 해당 아이디 값을 찾아 직접 WHERE문에서 crew_id 항목의 값을 수동으로 입력해서 출석 기록을 조회했다. 그런데 crew 테이블에서 crew_id를 기준으로 nickname 필드 값을 가져와서 함께 조회할 수도 있지 않을까?
+
+```
+SELECT c.nickname, a.attendance_date, a.start_time, a.end_time FROM attendance AS a
+INNER JOIN crew AS c ON a.crew_id = c.crew_id;
 ```
