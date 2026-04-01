@@ -43,3 +43,11 @@ INSERT INTO crew (crew_id, nickname) SELECT DISTINCT(crew_id), nickname FROM att
 ```
 ALTER TABLE attendance DROP COLUMN nickname;
 ```
+
+## 문제 3: 외래키 설정하기
+
+#### 1. 만약에 `crew` 테이블에는 `crew_id`가 `12`번인 크루가 존재하지 않지만, `attendance` 테이블에는 여전히 `crew_id`가 `12`번인 크루가 존재한다면?
+
+```
+ALTER TABLE attendance ADD FOREIGN KEY (crew_id) REFERENCES crew (crew_id);
+```
