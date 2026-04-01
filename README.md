@@ -67,3 +67,19 @@ ALTER TABLE crew ADD CONSTRAINT unique_nickname UNIQUE (nickname);
 ```
 SELECT nickname FROM crew WHERE nickname LIKE '디%';
 ```
+
+## 문제 6: 출석 기록 확인하기 (SELECT + WHERE)
+
+#### 1.`성실`의 아이콘 어셔는 등굣길에 스마트폰을 떨어뜨리는 바람에 3월 6일에 등교/하교 버튼을 누르지 못했다. 담당 코치에게 빠르게 공유한 그를 구제하기 위해 검프가 출석 처리를 해 주려고 한다.
+
+```
+어셔: 안녕하세요 검프. 저는 3월 6일 09시 31분에 등교하고 18시 01분에 하교했습니다. 감사합니다.
+검프: 네 ^^;;; (이거 어쩌나...)
+```
+
+#### 일단, 정말로 어셔의 기록이 누락됐는지부터 확인해 보자.
+
+```
+SELECT * FROM attendance AS a INNER JOIN crew AS c ON a.crew_id = c.crew_id
+WHERE c.nickname = '어셔' AND a.attendance_date = '2025-03-06';
+```
