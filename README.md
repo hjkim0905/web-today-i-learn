@@ -89,6 +89,5 @@ WHERE c.nickname = '어셔' AND a.attendance_date = '2025-03-06';
 #### 1. 확인해 보니, 어셔는 그날 출석 체크를 하지 못한 것이 사실로 드러났다. 사후 처리를 위해 출석을 추가해야 하는데 어떻게 추가해야 할까?
 
 ```
-INSERT INTO attendance (crew_id, attendance_date, start_time, end_time)
-VALUES ((SELECT crew_id FROM crew WHERE nickname = '어셔'), '2025-03-06', '09:31:00', '18:01:00');
+INSERT INTO attendance (crew_id, attendance_date, start_time, end_time) VALUES ((SELECT crew_id FROM crew WHERE nickname = '어셔'), '2025-03-06', '09:31:00', '18:01:00');
 ```
