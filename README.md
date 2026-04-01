@@ -1,6 +1,6 @@
 # DB - 실습
 
-## 문제 1
+## 문제 1: 테이블 생성하기 (CREATE TABLE)
 
 #### 1. `attendance` 테이블은 중복된 데이터가 쌓이는 구조이다. 중복된 데이터는 어떤 컬럼인가?
 
@@ -30,4 +30,16 @@ CREATE TABLE crew (
 
 ```
 INSERT INTO crew (crew_id, nickname) SELECT DISTINCT(crew_id), nickname FROM attendance;
+```
+
+## 문제 2: 테이블 컬럼 삭제하기 (ALTER TABLE)
+
+#### 1. crew 테이블을 만들고 중복을 제거했다. attendance에서 불필요해지는 컬럼은?
+
+- 불필요해지는 컬럼은 nickname이다. crew_id는 나중에 crew 테이블에서 JOIN을 통해 닉네임을 가져와야할 때 외래키로 사용되어야 해서 남겨놓아야 한다.
+
+#### 2. 컬럼을 삭제하려면 어떻게 해야 하는가?
+
+```
+ALTER TABLE attendance DROP COLUMN nickname;
 ```
